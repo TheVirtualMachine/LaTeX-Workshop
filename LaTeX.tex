@@ -1,0 +1,167 @@
+\documentclass{beamer}
+
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{listings}
+\usepackage{parskip}
+\usepackage{textcomp}
+
+\frenchspacing
+
+\definecolor{commentcolor}{rgb}{0, 0.7, 0.3}
+\definecolor{keywordcolor}{rgb}{0.6, 0, 0.5}
+\definecolor{stringcolor}{rgb}{0, 0, 0.9}
+
+\lstset {%
+	language=[LaTeX]TeX,
+	basicstyle=\ttfamily,
+	breaklines=true,
+	numbers=left,
+	tabsize=4,
+	commentstyle=\color{commentcolor},
+	keywordstyle=\color{keywordcolor},
+	stringstyle=\color{stringcolor},
+	columns=flexible,
+}
+
+\title{Introduction to \LaTeX{}}
+\subtitle{A \LaTeX{} Presentation}
+\author{Vincent Macri\\JJ Marr}
+\date{2017}
+
+\usecolortheme{beaver}
+\beamertemplatenavigationsymbolsempty
+\usefonttheme[onlymath]{serif}
+\logo{\rmfamily\normalsize\LaTeX{}}
+
+\AtBeginSection[] {%
+	\begin{frame}
+	\frametitle{Lesson Progress}
+	\tableofcontents[currentsection]
+	\end{frame}
+}
+
+\begin{document}
+	\frame{\titlepage}
+	\section{Introduction}
+	\begin{frame}
+		\frametitle{\secname}
+		\framesubtitle{Welcome to \LaTeX{}}
+		\begin{itemize}[<+->]
+			\item Lamport \TeX{}
+			\item Written as \LaTeX{} or LaTeX.
+			\item Pronounced lay-tek
+		\end{itemize}
+	\end{frame}
+	\begin{frame}
+		\frametitle{\secname}
+		\framesubtitle{Why we use \LaTeX{}}
+		\LaTeX{} is a very useful skill if you plan on doing:
+		\pause
+		\begin{itemize}
+			\item Math
+			\item Computer science
+			\item Engineering
+			\item Physics
+			\item Chemistry
+			\item Publishing
+		\end{itemize}
+		\pause
+		Since \LaTeX{} is so versatile, once you get used to it, you will find that you can do almost anything in it.
+	\end{frame}
+	\begin{frame}
+		\frametitle{\secname}
+		\framesubtitle{Learning \LaTeX{}}
+		The hardest part about learning \LaTeX{} is getting started.
+		\pause
+
+		So congratulations! You're done the hard part!
+		\pause
+
+		When using \LaTeX{}, it is important to remember that it makes correct design choices 99\% of the time. Accept what it does, as it does it for a reason.
+		\pause
+
+		For example, \LaTeX{} uses very large margins by default. It may look odd, but it actually sets the margins to make lines the size that studies have shown is best for readability (60--70 characters). This is easy to change of course.
+	\end{frame}
+	\begin{frame}
+		\frametitle{\secname}
+		\framesubtitle{Basic syntax}
+		\begin{description}[<+->]
+			\item[Spacing] Spaces in \LaTeX{} don't do much. \LaTeX{} treats 20 spaces the same as it treats 1 space.
+			\item[Inline math] \lstinline{\$1 + 2 = 3\$} $\rightarrow 1 + 2 = 3$ In math mode, you can use 0 or 20 spaces, \LaTeX{} will output the same thing. Do whatever you find easiest to write and edit.
+			\item[Comments] Comment \LaTeX{} code with the \% symbol. Write \textbackslash\% to use the \% symbol.
+			\item[Commands] \LaTeX{} uses commands to perform quick actions. They are formatted as \textbackslash command\{parameter\}. For some commands, the \{\} and parameter are optional.
+			\item[Environments] \LaTeX{} uses environments for things more advanced than commands. They start with \textbackslash begin\{environment\} and end with \textbackslash end\{environment\}
+		\end{description}
+	\end{frame}
+	\begin{frame}
+		\frametitle{\secname}
+		\framesubtitle{Installing}
+		Installing \LaTeX{} is easy, but there are lots of options for installing it.
+		
+		Listed below are the easiest solutions for the main desktop operating systems. Some of these work on all operating systems, but certain ones are easier with certain operating systems.
+		\begin{description}
+			\item[Any Good OS (GNU/Linux, BSD, etc.)] Install \TeX{} Live from your distro's repo.
+			\item[macOS] Who knows. There are online editors
+			\item[Windows] MikTeX is a GUI program for editing and compiling \LaTeX{}
+		\end{description}
+		If you have difficulty installing \LaTeX{}, you can try an online editor such as overleaf.com
+
+		You can also check https://www.latex-project.org/get/ if you are not satisfied with any of these options.
+	\end{frame}
+	\begin{frame}
+		\frametitle{\secname}
+		\framesubtitle{Let's start}
+		In this presentation, we will show how to write a \LaTeX{} document that proves the quadratic formula.
+	\end{frame}
+	\section{Preamble}
+	\begin{frame}
+		\frametitle{\secname}
+		\framesubtitle{The beginning}
+		Our document is split into two sections.
+
+		The \alert{preamble} and the \alert{main document}.
+	\end{frame}
+	\begin{frame}
+		\frametitle{\secname}
+		\framesubtitle{The preamble}
+		Your preamble is where you tell \LaTeX{} about what is going to be in your document.
+
+		Information is the preamble includes information such as:
+		\begin{itemize}[<+->]
+			\item Document class
+			\item Packages
+			\item Document title
+			\item Author
+			\item Date (defaults to date when document was compiled)
+		\end{itemize}
+	\end{frame}
+	\begin{frame}
+		\frametitle{\secname}
+		\framesubtitle{Example}
+		Let's code our preamble.
+		\lstinputlisting[linerange=1-9]{QuadraticProof.tex}
+	\end{frame}
+	\section{Setup}
+	\begin{frame}
+		\frametitle{\secname}
+		\framesubtitle{Your first class}
+		\LaTeX{} has different classes for different types of documents.
+
+		We will be using the \lstinline{article} class.
+		The \lstinline{article} class is:
+		\pause
+		\begin{itemize}[<+->]
+			\item Common
+			\item Simple
+			\item Versatile
+		\end{itemize}
+	\end{frame}
+	\begin{frame}[fragile]
+	\frametitle{secname}
+	\end{frame}
+	\begin{frame}
+		\frametitle{\secname}
+		\framesubtitle{Example}
+	\end{frame}
+\end{document}
