@@ -4,13 +4,16 @@
 \usepackage{color}
 \usepackage{listings}
 \usepackage{parskip}
-\usepackage{textcomp}
+\usepackage{hyperref}
+\usepackage{pgfplots}
+\usepackage{pdfpages}
 
 \frenchspacing
 
 \definecolor{commentcolor}{rgb}{0, 0.7, 0.3}
 \definecolor{keywordcolor}{rgb}{0.6, 0, 0.5}
 \definecolor{stringcolor}{rgb}{0, 0, 0.9}
+\definecolor{logocolor}{rgb}{0.3, 0.3, 0.7}
 
 \lstset {%
 	language=[LaTeX]TeX,
@@ -22,8 +25,18 @@
 	keywordstyle=\color{keywordcolor},
 	stringstyle=\color{stringcolor},
 	columns=flexible,
-	morekeywords={\therefore, \because},
+	morekeywords={\therefore, \because, \pgfplotsset, \includepdf, \includegraphics},
 }
+
+\pgfplotsset{every axis/.append style={
+	axis x line=middle, % Make the x-axis position be the middle of the graph
+	axis y line=middle, % Make the y-axis position be the middle of the graph
+	axis line style={->}, % Arrows on one end
+	xlabel={$x$}, % Label the x-axis
+	ylabel={$y$}, % Label the y-axis
+}}
+
+\pgfplotsset{mystyle/.style={no marks, line width=0.5pt, <->}} % Style of the graph
 
 \title{Introduction to \LaTeX{}}
 \subtitle{A \LaTeX{} Presentation}
@@ -34,7 +47,8 @@
 \usecolortheme{orchid}
 \beamertemplatenavigationsymbolsempty
 \usefonttheme[onlymath]{serif}
-\logo{\rmfamily\normalsize\LaTeX{}}
+\setbeamercolor{background canvas}{bg=}
+\logo{\color{logocolor}\rmfamily\normalsize\LaTeX{}}
 
 \AtBeginSection[] {%
 	\begin{frame}
@@ -109,7 +123,7 @@
 		\end{description}
 		If you have difficulty installing \LaTeX{}, you can try an online editor such as overleaf.com
 
-		You can also check https://www.latex-project.org/get/ if you are not satisfied with any of these options.
+		You can also check \url{https://www.latex-project.org/get/} if you are not satisfied with any of these options.
 	\end{frame}
 	\begin{frame}
 		\frametitle{\secname}
@@ -175,49 +189,300 @@
 		\end{example}
 		If your items aren't showing up in your table of contents, try recompiling.
 	\end{frame}
-	\section{The Document}
-	\begin{frame}[fragile]
-		\frametitle{\secname}
-		\framesubtitle{Let's actually start}
-		Time to actually start our document!
-
-		Let's explain how we prove the quadratic formula using our words before we derive it.
-		\begin{example}
-			\begin{lstlisting}[numbers=none, gobble=16]
-				\section{Prove the quadratic formula}
-				We will prove this by deriving it from $ax^2 + bx + c = 0$.
-
-				This is fairly trivial.
-			\end{lstlisting}
-		\end{example}
-	\end{frame}
+	\section{Math}
 	\begin{frame}[fragile]
 		\frametitle{\secname}
 		\framesubtitle{Doing math}
-		Most of the math we do right now is just using formulas and solving for things.
+		When doing math, we frequently plug values into formula and solve for variables.
 
 		The \alert{align*} environment is useful for this.
 		\begin{example}
 			\begin{lstlisting}[numbers=none, gobble=16]
 				\begin{align*}
+					a^2 + b^2 &= c^2\\
+					a^2 &= c^2 - b^2
 				\end{align*}
 			\end{lstlisting}
 		\end{example}
+		\Large
+		\begin{align*}
+			a^2 + b^2 &= c^2\\
+			a^2 &= c^2 - b^2
+		\end{align*}
 	\end{frame}
 	\begin{frame}[fragile]
 		\frametitle{\secname}
 		\framesubtitle{Math symbols}
-		Here is a list of useful \LaTeX{} math symbols:
-		\begin{description}	
-			\item[$\therefore$] \lstinline{$\therefore$}
-			\item[$\because$] \lstinline{$\because$}
-			\item[$\approx$] \lstinline{$\approx$}
-			\item[$\rightarrow$] \lstinline{$\rightarrow$}
-			\item[$\neq$] \lstinline{$\neq$}
-			\item[$\pm$] \lstinline{$\pm$}
-			\item[$\times$] \lstinline{$\times$}
-			\item[$\cdot$] \lstinline{$\cdot$}
-			\item[$\infty$] \lstinline{$\infty$}
-		\end{description}	
+		Here is a short list of useful \LaTeX{} math symbols:
+		\begin{center}
+			\begin{columns}
+				\begin{column}{0.5\textwidth}
+					\begin{description}
+						\item[$\therefore$] \lstinline{$\therefore$}
+						\item[$\because$] \lstinline{$\because$}
+						\item[$\approx$] \lstinline{$\approx$}
+						\item[$\rightarrow$] \lstinline{$\rightarrow$}
+						\item[$\neq$] \lstinline{$\neq$}
+						\item[$\pm$] \lstinline{$\pm$}
+						\item[$\times$] \lstinline{$\times$}
+						\item[$\cdot$] \lstinline{$\cdot$}
+						\item[$\infty$] \lstinline{$\infty$}
+					\end{description}
+				\end{column}
+				\begin{column}{0.5\textwidth}
+					\begin{description}
+						\item[$\Delta$] \lstinline{$\Delta$}
+						\item[$\pi$] \lstinline{$\pi$}
+						\item[$\tau$] \lstinline{$\tau$}
+						\item[$\theta$] \lstinline{$\theta$}
+						\item[$\angle$] \lstinline{$\angle$}
+						\item[$\cup$] \lstinline{$\cup$}
+						\item[$\cap$] \lstinline{$\cap$}
+						\item[$\geq$] \lstinline{$\ge$} or \lstinline{$\geq$}
+						\item[$\leq$] \lstinline{$\le$} or \lstinline{$\leq$}
+					\end{description}
+				\end{column}
+			\end{columns}
+		\end{center}
+		You can search the Internet for other commands.
+
+		You can also try \url{http://detexify.kirelabs.org}, a site that lets you draw the symbol you want and then lists \LaTeX{} commands for what it thinks you're looking for.
 	\end{frame}
+	\begin{frame}[fragile]
+		\frametitle{\secname}
+		\framesubtitle{Math notation}
+		\begin{columns}
+			\begin{column}{0.6\textwidth}
+				\begin{example}[Powers]
+					\begin{lstlisting}[numbers=none, gobble=24]
+						$a^{b}$
+					\end{lstlisting}
+				\end{example}
+			\end{column}
+			\begin{column}{0.4\textwidth}
+				\Huge
+				$a^{b}$
+			\end{column}
+		\end{columns}
+		\begin{columns}
+			\begin{column}{0.6\textwidth}
+				\begin{example}[Subscript]
+					\begin{lstlisting}[numbers=none, gobble=24]
+						$x_{1}$
+					\end{lstlisting}
+				\end{example}
+			\end{column}
+			\begin{column}{0.4\textwidth}
+				\Huge
+				$x_{1}$
+			\end{column}
+		\end{columns}
+		\begin{columns}
+			\begin{column}{0.6\textwidth}
+				\begin{example}[Element Of]
+					\begin{lstlisting}[numbers=none, gobble=24]
+						$x \in \mathbb{R}$
+					\end{lstlisting}
+				\end{example}
+			\end{column}
+			\begin{column}{0.4\textwidth}
+				\Huge
+				$x \in \mathbb{R}$
+			\end{column}
+		\end{columns}
+	\end{frame}
+	\begin{frame}[fragile]
+		\frametitle{\secname}
+		\framesubtitle{Math commands}
+		\begin{columns}
+			\begin{column}{0.6\textwidth}
+				\begin{example}[Fractions]
+					\begin{lstlisting}[numbers=none, gobble=24]
+						$\frac{a}{b}$
+					\end{lstlisting}
+				\end{example}
+			\end{column}
+			\begin{column}{0.4\textwidth}
+				\Huge
+				$\frac{a}{b}$
+			\end{column}
+		\end{columns}
+		\begin{columns}
+			\begin{column}{0.6\textwidth}
+				\begin{example}[Square Roots]
+					\begin{lstlisting}[numbers=none, gobble=24]
+						$\sqrt{a}$
+					\end{lstlisting}
+				\end{example}
+			\end{column}
+			\begin{column}{0.4\textwidth}
+				\Huge
+				$\sqrt{a}$
+			\end{column}
+		\end{columns}
+		\begin{columns}
+			\begin{column}{0.6\textwidth}
+				\begin{example}[Nth Roots]
+					\begin{lstlisting}[numbers=none, gobble=24]
+						$\sqrt[n]{a}$
+					\end{lstlisting}
+				\end{example}
+			\end{column}
+			\begin{column}{0.4\textwidth}
+				\Huge
+				$\sqrt[n]{a}$
+			\end{column}
+		\end{columns}
+	\end{frame}
+	\begin{frame}[fragile]
+		\frametitle{\secname}
+		\framesubtitle{Quadratic Formula Example}
+		\begin{example}
+			\begin{lstlisting}[numbers=none, gobble=16]
+				$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$
+			\end{lstlisting}
+		\end{example}
+		\begin{center}
+			\Huge
+			$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$
+		\end{center}
+	\end{frame}
+	\section{The Document}
+	\begin{frame}[fragile]
+		\frametitle{\secname}
+		\framesubtitle{Let's actually start}
+		Time to actually start on our document contents!
+
+		Let's explain how we prove the quadratic formula using our words before we derive it.
+		\begin{example}
+			\begin{lstlisting}[numbers=none, gobble=16]
+				\section{Prove the quadratic formula}
+					We will prove this by deriving it from $ax^2 + bx + c = 0$.
+
+					This is fairly trivial.
+			\end{lstlisting}
+		\end{example}
+	\end{frame}
+	\section{Graphing}
+	\begin{frame}[fragile]
+		\frametitle{\secname}
+		\framesubtitle{PGFPlots and TikZ}
+		To graph in \LaTeX{}, we use the package PGFPlots, which uses another package called TikZ.
+
+		Graphing with these is very easy, but can also be verbose.
+
+		In order to use PGFPlots, we must use its package in our preamble:
+		\begin{lstlisting}[numbers=none, gobble=12]
+			\usepackage{pgfplots}
+		\end{lstlisting}
+	\end{frame}
+	\begin{frame}[fragile]
+		\frametitle{\secname}
+		\framesubtitle{Graph Options}
+		In your preamble:
+		\begin{lstlisting}[gobble=12]
+			\pgfplotsset{every axis/.append style={
+				axis x line=middle, % Make the x-axis position be the middle of the graph
+				axis y line=middle, % Make the y-axis position be the middle of the graph
+				axis line style={->}, % Arrows on one end
+				xlabel={$x$}, % Label the x-axis
+				ylabel={$y$}, % Label the y-axis
+			}}
+
+			\pgfplotsset{mystyle/.style={no marks, line width=0.5pt, <->}} % Style of the graph
+		\end{lstlisting}
+	\end{frame}
+	\begin{frame}[fragile]
+		\frametitle{\secname}
+		\framesubtitle{Graph Options}
+		\begin{lstlisting}[gobble=12]
+			\begin{tikzpicture}
+			\begin{axis}[
+				width=\textwidth, % Make the graph take up the width of the page
+				height=3in, % Make the graph 3 inches tall
+				xmin=-5,xmax=5, % Make the x-axis go from -5 to 5
+				ymin=-2.5,ymax=8, % Make the y-axis go from -2.5 to 8
+				]
+				\addplot[mystyle] [domain=-2:4, samples=50]{(x-1)^2 - 2} node at (axis cs:-3, 1){$f(x)=(x-1)^2 - 2$};
+			\end{axis}
+			\end{tikzpicture}
+		\end{lstlisting}
+	\end{frame}
+	\begin{frame}
+		\frametitle{\secname}
+		\framesubtitle{The Graph}
+		\begin{tikzpicture}
+			\begin{axis}[
+				width=\textwidth, % Make the graph take up the width of the page
+				height=3in, % Make the graph 3 inches tall
+				xmin=-5,xmax=5, % Make the x-axis go from -5 to 5
+				ymin=-2.5,ymax=8, % Make the y-axis go from -2.5 to 8
+				]
+				\addplot[mystyle] [domain=-2:4, samples=50]{(x-1)^2 - 2} node at (axis cs:-3, 1){$f(x)=(x-1)^2 - 2$};
+			\end{axis}
+		\end{tikzpicture}
+	\end{frame}
+	\begin{frame}[fragile]
+		\frametitle{\secname}
+		\framesubtitle{Sinusoidal Curves}
+		\begin{lstlisting}[gobble=12]
+			\begin{tikzpicture}
+				\begin{axis}[
+					width=\textwidth, % Make the graph take up the width of the page
+					height=3in, % Make the graph 3 inches tall
+					xmin=0,xmax=2.25*pi, % Make the x-axis go from 0 to 2pi
+					ymin=-1.5,ymax=1.5, % Make the y-axis go from -1.5 to 1.5
+					xtick = {0, 1.5708, ..., 6.2832}, % Marked positions on the x-axis
+					xticklabels={0$\pi$, 0.5$\pi$,...$\pi$,2$\pi$}, % How to label those positions.
+					]
+					\addplot[mystyle, ->] [domain=0:2.125*pi, samples=100]{sin(deg(x))};
+				\end{axis}
+			\end{tikzpicture}
+		\end{lstlisting}
+	\end{frame}
+	\begin{frame}
+		\frametitle{\secname}
+		\framesubtitle{Sin Graph}
+		\begin{tikzpicture}
+			\begin{axis}[
+					width=\textwidth, % Make the graph take up the width of the page
+					height=3in, % Make the graph 3 inches tall
+					xmin=0,xmax=2.25*pi, % Make the x-axis go from 0 to 2pi
+					ymin=-1.5,ymax=1.5, % Make the y-axis go from -1.5 to 1.5
+					xtick = {0, 1.5708, ..., 6.2832}, % Marked positions on the x-axis
+					xticklabels={0$\pi$, 0.5$\pi$,...$\pi$,2$\pi$}, % How to label those positions.
+				]
+				\addplot[mystyle, ->] [domain=0:2.125*pi, samples=100]{sin(deg(x))};
+			\end{axis}
+		\end{tikzpicture}
+	\end{frame}
+	\section{Graphics}
+	\begin{frame}[fragile]
+		\frametitle{\secname}
+		\framesubtitle{Look At These Graphics}
+		\LaTeX{} lets you include images with the \lstinline{graphicx} package.
+		\begin{example}
+			\begin{lstlisting}[gobble=12]
+				\begin{center}
+					\includegraphics[height=0.5in]{PolynomialSuperheroes} % The actual file is named PolynomialSuperheroes.eps
+				\end{center}
+			\end{lstlisting}
+		\end{example}
+		\begin{center}
+			\includegraphics[height=0.5in]{PolynomialSuperheroes}
+		\end{center}
+		The \lstinline{\includegraphics} command does need the file extension. It will pick the best format if multiple formats are available. It supports: JPG, PNG, PDF, and (usually) EPS.
+	\end{frame}
+	\begin{frame}[fragile]
+		\frametitle{\secname}
+		\framesubtitle{Including Entire Pages}
+		If you don't want to bother with using \LaTeX{} to graph, you can scan an image, and use the \lstinline{pdfpages} package to include the scan in your \LaTeX{} document.
+		\begin{example}
+			\begin{lstlisting}[numbers=none, gobble=16]
+				\includepdf[pages={1,3}]{WorkshopCopy.pdf} % Include pages 1 and 3 of this workshop.
+			\end{lstlisting}
+		\end{example}
+		The next two slides will now have the first and third slide of this presentation repeated.
+	\end{frame}
+	\includepdf[pages={1,3}]{WorkshopCopy} % Include pages 1 and 3 of this workshop.
 \end{document}
