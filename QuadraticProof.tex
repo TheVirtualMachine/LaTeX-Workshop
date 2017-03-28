@@ -1,4 +1,4 @@
-\documentclass[12pt]{article} % Use the article class.
+\documentclass[letterpaper, 12pt]{article} % Use the article class.
 
 \usepackage[margin=1in]{geometry} % Use 1 inch margins.
 \usepackage{parskip} % Simplified formatting of paragraphs.
@@ -6,23 +6,29 @@
 \usepackage{amssymb} % AMS package for mathematical symbols.
 
 \title{Quadratic Proof} % The title of our document.
-\author{Vincent Macri} % The author's name.
+\author{JJ Marr} % The author's name.
 \date{March 29, 2017} % The date of this document.
 
 \frenchspacing % LaTeX puts extra space after periods by default. This line disables that.
 
 \begin{document}
+	\pagenumbering{gobble}
 	\maketitle % Make the title page.
 	\tableofcontents % Create the table of contents.
 	\newpage % Page break
-
+	\pagenumbering{arabic}
 	\section{Deriving} % Create a new section.
 	Let's prove by deriving!
-
-	Fairly trivial.
+	
+	Fairly trivial, proof is left to the proofreader.
 	\begin{align*}
-		a + b &= c\\
-		a &= c - b
+		ax^2 + bx + c &= 0\\ %quadratic equation
+		x^2 + \frac{b}{a}x + \frac{c}{a} &= 0\\ % Divide both sides by a, which is non-zero.
+		x^2 + \frac{b}{a}x &= - \frac{c}{a}\\ % Move c/a to the other side.
+		x^2 + \frac{b}{a}x + (\frac{b}{2a})^2&= - \frac{c}{a} + (\frac{b}{2a})^2\\ % Set up a completion of the square.
+		(x + \frac{b}{2a})^2 &= - \frac{c}{a} + \frac{b^2}{4a^2}\\ % Complete actual square and simplify right side.
+		(x + \frac{b}{2a})^2 &= \frac{b^2 - 4ac}{4a^2}\\ % Simplify right side further.
+		x + \frac{b}{2a}&= \pm\frac{\sqrt{b^2 - 4ac}}{2a}\\ % Square root of both sides, note the \pm used to show that a root in this context can either be positive or negative.
+		x&= \frac{- b \pm \sqrt{b^2 - 4ac}}{2a} % Move b/2a to the other side.
 	\end{align*}
-	$\therefore$ $\infty$
 \end{document}
