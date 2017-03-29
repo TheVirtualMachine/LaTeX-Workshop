@@ -25,7 +25,7 @@
 	keywordstyle=\color{keywordcolor},
 	stringstyle=\color{stringcolor},
 	columns=flexible,
-	morekeywords={\therefore, \because, \pgfplotsset, \includepdf, \includegraphics},
+	morekeywords={\therefore, \because, \pgfplotsset, \includepdf, \includegraphics, \maketitle, \tableofcontents},
 }
 
 \pgfplotsset{every axis/.append style={
@@ -456,10 +456,21 @@
 			\end{axis}
 		\end{tikzpicture}
 	\end{frame}
+	\section{The Quadratic Proof}
+	\begin{frame}
+		\frametitle{\secname}
+		\framesubtitle{The preamble}
+		\lstinputlisting[linerange=1-12]{QuadraticProof.tex}
+	\end{frame}
+	\begin{frame}[shrink]
+		\frametitle{\secname}
+		\framesubtitle{The content}
+		\lstinputlisting[firstline=14, firstnumber=14]{QuadraticProof.tex}
+	\end{frame}
 	\section{Graphics}
 	\begin{frame}[fragile]
 		\frametitle{\secname}
-		\framesubtitle{Look At These Graphics}
+		\framesubtitle{Look at these graphics}
 		\LaTeX{} lets you include images with the \lstinline{graphicx} package.
 		\begin{example}
 			\begin{lstlisting}[gobble=12]
@@ -475,14 +486,22 @@
 	\end{frame}
 	\begin{frame}[fragile]
 		\frametitle{\secname}
-		\framesubtitle{Including Entire Pages}
+		\framesubtitle{Including entire pages}
 		If you don't want to bother with using \LaTeX{} to graph, you can scan an image, and use the \lstinline{pdfpages} package to include the scan in your \LaTeX{} document.
 		\begin{example}
 			\begin{lstlisting}[numbers=none, gobble=16]
-				\includepdf[pages={1,3}]{WorkshopCopy.pdf} % Include pages 1 and 3 of this workshop.
+				\includepdf[pages={1-2}]{QuadraticProof.pdf} % Include JJ's quadratic proof.
 			\end{lstlisting}
 		\end{example}
-		The next two slides will now have the first and third slide of this presentation repeated.
+		The next two slides will contain JJ's quadratic proof.
 	\end{frame}
-	\includepdf[pages={1,3}]{WorkshopCopy} % Include pages 1 and 3 of this workshop.
+	\includepdf[pages={1-2}]{QuadraticProof.pdf} % Include JJ's quadratic proof.
+	\section{Questions and Answers}
+	\begin{frame}
+		\frametitle{\secname}
+		\framesubtitle{Question for me?}
+		\begin{center}
+			{\Huge Questions}
+		\end{center}
+	\end{frame}
 \end{document}
